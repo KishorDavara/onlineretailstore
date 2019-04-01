@@ -43,10 +43,16 @@ public class BillServiceController {
 	public ResponseEntity<Collection<Bill>> getBillsWithCompleteDetail() {
 		return new ResponseEntity<>(billService.getBillsWithCompleteDetails(), HttpStatus.OK);
 	}
+	
 
 	@RequestMapping(value = "/bills/{id}")
-	public ResponseEntity<BillDTO> getProductById(@PathVariable("id") Long id) {
+	public ResponseEntity<BillDTO> getBillById(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(billService.getBillById(id), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/bills/full/{id}")
+	public ResponseEntity<Bill> getBillsByIdWithCompleteDetail(@PathVariable("id") Long id) {
+		return new ResponseEntity<>(billService.getBillByIdWithCompleteDetails(id), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/bills", method = RequestMethod.POST)

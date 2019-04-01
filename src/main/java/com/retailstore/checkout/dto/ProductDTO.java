@@ -6,7 +6,7 @@ package com.retailstore.checkout.dto;
 
 /**
  * @author KDavara
- *
+ * DTO class for product use to only expose relevant data and not an entity data to the end user
  */
 public class ProductDTO {
 	

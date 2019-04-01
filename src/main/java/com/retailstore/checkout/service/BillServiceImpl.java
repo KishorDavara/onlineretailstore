@@ -1,7 +1,6 @@
 package com.retailstore.checkout.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +21,7 @@ import com.retailstore.checkout.repository.PurchaseRepository;
 
 /**
  * @author KDavara
- *
+ * service class for billing activities
  */
 
 @Service
@@ -42,7 +41,7 @@ public class BillServiceImpl implements BillService {
 	 * @see com.retailstore.checkout.service.BillService#createBill(com.retailstore.checkout.entity.Bill)
 	 */
 	@Override
-	public void createBill(BillDTO billDTO) {
+	public Bill createBill(BillDTO billDTO) {
 		List<BillProductDTO> billProducts = billDTO.getBillProducts();
 		Set<Purchase> purchases = new LinkedHashSet<>(); 
 		int totalItems = 0;
@@ -57,20 +56,20 @@ public class BillServiceImpl implements BillService {
 			
 			//calculate the totalItems,value and tax
 			totalItems += quantity;
-			subTotal += product.getPrice();
-			totalSalesTax += product.getSalesTax();
+			subTotal += (product.getPrice()* quantity);
+			totalSalesTax += product.getSalesTax() * quantity;
 		}
 		
 		Bill bill = new Bill(purchases,totalItems,subTotal,totalSalesTax);
 		
-		billRepository.save(bill);		
+		return billRepository.save(bill);		
 	}
 
 	/* (non-Javadoc)
 	 * @see com.retailstore.checkout.service.BillService#updateBill(java.lang.String, com.retailstore.checkout.entity.Bill)
 	 */
 	@Override
-	public void updateBill(Long id, BillDTO billDTO) {
+	public Bill updateBill(Long id, BillDTO billDTO) {
 		List<BillProductDTO> billProducts = billDTO.getBillProducts();
 		Set<Purchase> purchases = new LinkedHashSet<>(); 
 		int totalItems = 0;
@@ -96,7 +95,7 @@ public class BillServiceImpl implements BillService {
 		bill.setTotalSalesTax(totalSalesTax);
 		bill.setTotalCost(subTotal + totalSalesTax);
 		
-		billRepository.save(bill);
+		return billRepository.save(bill);
 	}
 
 	/* (non-Javadoc)
@@ -111,7 +110,7 @@ public class BillServiceImpl implements BillService {
 	 * @see com.retailstore.checkout.service.BillService#getBills()
 	 */
 	@Override
-	public Collection<BillDTO> getBills() {
+	public List<BillDTO> getBills() {
 		List<Bill> bills = billRepository.findAll();
 		List<BillDTO> billList = new ArrayList<>();
 		bills.forEach(bill -> {
@@ -164,8 +163,17 @@ public class BillServiceImpl implements BillService {
 	 * @see com.retailstore.checkout.service.BillService#getBillsWithCompleteDetails()
 	 */
 	@Override
-	public Collection<Bill> getBillsWithCompleteDetails() {
+	public List<Bill> getBillsWithCompleteDetails() {
 		return billRepository.findAll();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.retailstore.checkout.service.BillService#getBillByIdWithCompleteDetails()
+	 */
+	@Override
+	public Bill getBillByIdWithCompleteDetails(Long id) {
+		// TODO Auto-generated method stub
+		return billRepository.findById(id).get();
 	}
 
 }

@@ -5,7 +5,7 @@ package com.retailstore.checkout.dto;
 
 /**
  * @author KDavara
- *
+ * DTO class for purchases use to only expose relevant data and not an entity data to the end user
  */
 public class PurchaseDTO {
     private ProductDTO product;

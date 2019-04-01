@@ -4,7 +4,6 @@
 package com.retailstore.checkout.service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import com.retailstore.checkout.repository.ProductRepository;
 
 /**
  * @author KDavara
- *
+ * service class for billing activities
  */
 
 @Service
@@ -34,21 +33,21 @@ public class ProductServiceImpl implements ProductService {
 	 * @see com.retailstore.checkout.service.ProductService#createProduct(com.retailstore.checkout.entity.Product)
 	 */
 	@Override
-	public void createProduct(ProductDTO productDTO) {
+	public Product createProduct(ProductDTO productDTO) {
 	  Long productCategoryID = productDTO.getProductCategoryId();	
 	  
 	  ProductCategory productCategory = productCategoryRepository.findById(productCategoryID).get();
 	  
 	  Product product = new Product(productDTO.getName(),productDTO.getPrice(),productCategory); 	
       
-	  productRepository.save(product);
+	  return productRepository.save(product);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.retailstore.checkout.service.ProductService#updateProduct(java.lang.String, com.retailstore.checkout.entity.Product)
 	 */
 	@Override
-	public void updateProduct(Long id, ProductDTO productDTO) {
+	public Product updateProduct(Long id, ProductDTO productDTO) {
 		Long productCategoryID = productDTO.getProductCategoryId();	
 		
 		ProductCategory productCategory = productCategoryRepository.findById(productCategoryID).get();
@@ -58,7 +57,7 @@ public class ProductServiceImpl implements ProductService {
 		product.setPrice(productDTO.getPrice());
 		product.setProductCategory(productCategory);
 
-		productRepository.save(product);
+		return productRepository.save(product);
 	}
 
 	/* (non-Javadoc)
@@ -73,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 	 * @see com.retailstore.checkout.service.ProductService#getProducts()
 	 */
 	@Override
-	public Collection<ProductDTO> getProducts() {
+	public List<ProductDTO> getProducts() {
 		List<Product> products = productRepository.findAll();
 		List<ProductDTO> productsDTO = new ArrayList<>();
 		products.forEach(product -> {
@@ -86,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
 	 * @see com.retailstore.checkout.service.ProductService#getProducts()
 	 */
 	@Override
-	public Collection<Product> getProductsWithCompleteDetail() {
+	public List<Product> getProductsWithCompleteDetail() {
 		return productRepository.findAll();
 	}
 
@@ -99,6 +98,22 @@ public class ProductServiceImpl implements ProductService {
         ProductDTO productDTO = new ProductDTO(product.getName(),product.getPrice(), product.getProductCategory().getId());
 		System.out.println(productRepository.getOne(id).getId());
 		return productDTO;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.retailstore.checkout.service.ProductService#getTotalProductCount()
+	 */
+	@Override
+	public long getTotalProductCount() {
+		return productRepository.count();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.retailstore.checkout.service.ProductService#getProductWithCompleteDetail()
+	 */
+	@Override
+	public Product getProductWithCompleteDetail(Long id) {
+		return productRepository.findById(id).get();
 	}
 
 }

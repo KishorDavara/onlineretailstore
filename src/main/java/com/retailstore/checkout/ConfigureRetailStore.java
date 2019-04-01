@@ -49,11 +49,19 @@ public class ConfigureRetailStore implements CommandLineRunner {
 	  this.configureProduct();
 	}
 	
+	/**
+	 * create the product category list
+	 * @throws Exception
+	 */
 	public void configureProductCategory() throws Exception {
         //save the product categories into database
         prodcutCategoryRepository.saveAll(categoryList);
 	}
 	
+	/**
+	 * create the products
+	 * @throws Exception
+	 */
     public void configureProduct() throws Exception {
     	//configure the product data
     	List<Product> productList = new ArrayList<>();

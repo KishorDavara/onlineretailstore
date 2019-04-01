@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 
 /**
  * @author KDavara
- *
+ * entity class for purchases
  */
 @Entity
 public class Purchase {

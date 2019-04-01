@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 
-
-
 /**
  * @author KDavara
- *
+ * DTO class for bill use to only expose relevant data and not an entity data to the end user
  */
 public class BillDTO {
 	
