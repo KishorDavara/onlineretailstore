@@ -28,6 +28,7 @@ public class CheckoutApplicationTests {
 	
 	@Test
 	public void productCategoryCreateTest() {
+		long beforeAddCount = prodcutCategoryRepository.count();
 		ProductCategory category1 = new ProductCategory("A",10.00);
 		ProductCategory category2 = new ProductCategory("B",20.00);
 		ProductCategory category3 = new ProductCategory("C",0.00);
@@ -37,7 +38,8 @@ public class CheckoutApplicationTests {
 	    categoryList.add(category2);
 	    categoryList.add(category3);
 		prodcutCategoryRepository.saveAll(categoryList);
-		Assert.assertEquals(prodcutCategoryRepository.count(), 3);
+		long afterAddCount = prodcutCategoryRepository.count();
+		Assert.assertEquals(afterAddCount, beforeAddCount + 3);
 	}
 
 }
