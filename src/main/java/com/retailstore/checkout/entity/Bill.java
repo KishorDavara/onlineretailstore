@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -28,10 +29,13 @@ public class Bill {
     @JoinTable(name = "bill_purchases", joinColumns = @JoinColumn(name = "bill_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "purchase_id", referencedColumnName = "id"))
 	private Set<Purchase> purchases;
 	
+	@NotNull
 	private int totalItems;
 	
+	@NotNull
 	private double subTotal;
 	
+	@NotNull
 	private double totalSalesTax;
 	
 	private double totalCost;
@@ -40,63 +44,97 @@ public class Bill {
 		
 	}
 	
-	public Bill(Set<Purchase> lineItems) {
-		this.purchases = lineItems;
-	}
-	
-	public Bill(Set<Purchase> lineItems,int totalItems,double subTotal,double totalSalesTax, double totalCost) {
-		this.purchases = lineItems;
+	public Bill(Set<Purchase> purchases,int totalItems,double subTotal,double totalSalesTax) {
+		this.purchases = purchases;
 		this.totalItems = totalItems;
 		this.subTotal = subTotal;
 		this.totalSalesTax = totalSalesTax;
-		this.totalCost = totalCost;
+		this.totalCost = this.subTotal + this.totalSalesTax;
 	}
 
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public Set<Purchase> getLineItems() {
+	/**
+	 * @return the purchases
+	 */
+	public Set<Purchase> getPurchases() {
 		return purchases;
 	}
 
-	public void setLineItems(Set<Purchase> lineItems) {
-		this.purchases = lineItems;
+	/**
+	 * @param purchases the purchases to set
+	 */
+	public void setPurchases(Set<Purchase> purchases) {
+		this.purchases = purchases;
 	}
 
+	/**
+	 * @return the totalItems
+	 */
 	public int getTotalItems() {
 		return totalItems;
 	}
 
+	/**
+	 * @param totalItems the totalItems to set
+	 */
 	public void setTotalItems(int totalItems) {
 		this.totalItems = totalItems;
 	}
 
+	/**
+	 * @return the subTotal
+	 */
 	public double getSubTotal() {
 		return subTotal;
 	}
 
+	/**
+	 * @param subTotal the subTotal to set
+	 */
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
 
+	/**
+	 * @return the totalSalesTax
+	 */
 	public double getTotalSalesTax() {
 		return totalSalesTax;
 	}
 
+	/**
+	 * @param totalSalesTax the totalSalesTax to set
+	 */
 	public void setTotalSalesTax(double totalSalesTax) {
 		this.totalSalesTax = totalSalesTax;
 	}
 
+	/**
+	 * @return the totalCost
+	 */
 	public double getTotalCost() {
 		return totalCost;
 	}
 
+	/**
+	 * @param totalCost the totalCost to set
+	 */
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
+	
+	
 }

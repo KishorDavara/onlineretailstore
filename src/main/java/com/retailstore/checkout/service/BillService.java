@@ -3,6 +3,9 @@
  */
 package com.retailstore.checkout.service;
 
+import java.util.Collection;
+
+import com.retailstore.checkout.dto.BillDTO;
 import com.retailstore.checkout.entity.Bill;
 
 /**
@@ -10,13 +13,16 @@ import com.retailstore.checkout.entity.Bill;
  *
  */
 public interface BillService {
-	void createBill(Bill bill);
+	void createBill(BillDTO bill);
 
-	void updateBill(String id, Bill bill);
+	void updateBill(Long id, BillDTO bill);
 
-	void deleteBill(String id);
+	void deleteBill(Long id);
 
-	void getBills();
+	Collection<BillDTO> getBills();
 
-	void getBillById(String id);
+	BillDTO getBillById(Long id);
+ 
+	Collection<Bill> getBillsWithCompleteDetails();
+	
 }

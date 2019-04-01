@@ -5,6 +5,7 @@ package com.retailstore.checkout.service;
 
 import java.util.Collection;
 
+import com.retailstore.checkout.dto.ProductDTO;
 import com.retailstore.checkout.entity.Product;
 
 /**
@@ -12,13 +13,15 @@ import com.retailstore.checkout.entity.Product;
  * 
  */
 public interface ProductService {
-	void createProduct(Product product);
+	void createProduct(ProductDTO product);
 	
-	void updateProduct(String id, Product product);
+	void updateProduct(Long id, ProductDTO product);
 	
-	void deleteProduct(String id);
+	void deleteProduct(Long id);
 	
-	Collection<Product> getProducts();
+	Collection<ProductDTO> getProducts();
 	
-	Collection<Product> getProductById(String id);
+	Collection<Product> getProductsWithCompleteDetail();
+	
+	ProductDTO getProductById(Long id);
 }

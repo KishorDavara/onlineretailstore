@@ -17,7 +17,7 @@ import com.retailstore.checkout.repository.ProductCategoryRepository;
 /**
  * @author KDavara
  * Helper class for configure the Retail Store Data
- * This class is responsible for adding the products and category details 
+ * This class is responsible for adding the products and category details x
  */
 
 @Component

@@ -16,7 +16,7 @@ public class Purchase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private Long id;
 	
 	@ManyToOne
     @JoinColumn(name = "product_id")
@@ -39,42 +39,72 @@ public class Purchase {
 		this.totalSalesTax = this.product.getSalesTax() * this.quantity;
 	}
 
-	public String getId() {
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the product
+	 */
 	public Product getProduct() {
 		return product;
 	}
 
+	/**
+	 * @param product the product to set
+	 */
 	public void setProduct(Product product) {
 		this.product = product;
 	}
 
+	/**
+	 * @return the quantity
+	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
+	/**
+	 * @param quantity the quantity to set
+	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
+	/**
+	 * @return the totalCost
+	 */
 	public double getTotalCost() {
 		return totalCost;
 	}
 
+	/**
+	 * @param totalCost the totalCost to set
+	 */
 	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
 
+	/**
+	 * @return the totalSalesTax
+	 */
 	public double getTotalSalesTax() {
 		return totalSalesTax;
 	}
 
+	/**
+	 * @param totalSalesTax the totalSalesTax to set
+	 */
 	public void setTotalSalesTax(double totalSalesTax) {
 		this.totalSalesTax = totalSalesTax;
 	}

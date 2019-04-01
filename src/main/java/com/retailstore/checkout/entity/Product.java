@@ -47,42 +47,72 @@ public class Product {
 		this.salesTax = (price * productCategory.getSalesTaxPercentage())/100; 
 	}
 
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return the price
+	 */
 	public double getPrice() {
 		return price;
 	}
 
+	/**
+	 * @param price the price to set
+	 */
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
+	/**
+	 * @return the productCategory
+	 */
 	public ProductCategory getProductCategory() {
 		return productCategory;
 	}
 
+	/**
+	 * @param productCategory the productCategory to set
+	 */
 	public void setProductCategory(ProductCategory productCategory) {
 		this.productCategory = productCategory;
 	}
 
+	/**
+	 * @return the salesTax
+	 */
 	public double getSalesTax() {
 		return salesTax;
 	}
 
+	/**
+	 * @param salesTax the salesTax to set
+	 */
 	public void setSalesTax(double salesTax) {
 		this.salesTax = salesTax;
 	}

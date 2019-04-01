@@ -4,7 +4,6 @@
 package com.retailstore.checkout.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.retailstore.checkout.entity.ProductCategory;
@@ -17,6 +16,4 @@ import com.retailstore.checkout.entity.ProductCategory;
 @Repository
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
 
-//	@Query("SELECT t FROM Category t WHERE t.name = ?1")
-//    ProductCategory findProductCategoryByName(String categoryName);
 }
