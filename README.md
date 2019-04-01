@@ -74,3 +74,21 @@
 - Get the bill by Id with only required details: GET  /bills/{id}
 
 - Get the bill by Id with complete details: GET /bills/full/{id}
+
+
+# Installation and application setup:
+=> Prerequsites: Installed Maven,Git,JDK
+
+=> setup and build the application on the local environment:
+- create the folder of your choice.
+- go to that folder
+- open cmd or git bash
+- initiliaze git repository using "git init"
+- clone repository using "git clone https://github.com/KishorDavara/onlineretailstore.git"
+- go to basefolder ex; onlineretailstore
+- run the command "mvn package" to install dependencies and build the application
+- after build successful go to "target" folder
+- run the command "java -jar checkout-0.0.1-SNAPSHOT.jar" and if you want to run the application on different port ie; 8181 run the command like "java -jar checkout-0.0.1-SNAPSHOT.jar --server.port=8181"
+- It will start the spring boot application.
+- Open your favorite API Development Tool and execute the above APIs to perform operations for products and bills.
+   
